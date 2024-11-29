@@ -1,21 +1,11 @@
-# fly.toml app configuration file generated for fly-minio on 2024-11-28T10:53:10+01:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
-app = 'fly-minio'
-primary_region = 'fra'
-
-[build]
-
-[[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+[network]
+attach = ["cbj-backend"]
 
 [mounts]
-  source = "miniodata"
-  destination = "/data"
+source = "miniodata"
+destination = "/data"
 
-[network]
-  attach = ["cbj-backend"]
+[services]
+internal_port = 9000
+protocol = "tcp"
+processes = ["app"]
