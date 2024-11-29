@@ -1,3 +1,8 @@
 FROM minio/minio
 
-CMD ["server", "http://minio-{1...3}/data", "--console-address", ":9001"]
+ENV MINIO_SERVER_URL="http://minio1.local:9000"
+
+COPY run.sh run.sh
+ENTRYPOINT [ "/bin/sh" ]
+
+CMD [ "run.sh" ]
