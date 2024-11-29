@@ -16,3 +16,6 @@ primary_region = 'fra'
 [mounts]
   source = "miniodata"
   destination = "/data"
+
+[network]
+  attach = ["cbj-backend"]
