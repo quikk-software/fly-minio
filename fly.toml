@@ -7,6 +7,7 @@ app = 'fly-minio'
 primary_region = 'fra'
 
 [build]
+  image = "minio/minio"
 
 [[vm]]
   memory = '1gb'
@@ -16,3 +17,20 @@ primary_region = 'fra'
 [mounts]
   source = "miniodata"
   destination = "/data"
+
+[services]
+  [[services.ports]]
+    handlers = ["http"]
+    port = "9000"
+    internal_port = "9000"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = "9001"
+    internal_port = "9001"
+
+  [[services.tcp_checks]]
+    interval = 10000
+    timeout = 2000
+    grace_period = "5s"
+    restart_limit = 0
